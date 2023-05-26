@@ -1,0 +1,100 @@
+`ifndef IPAES_TBCONFIG_SVH_
+`define IPAES_TBCONFIG_SVH_
+
+	localparam [1:0]   NUM_OF_BLOCKS = 2;
+	
+	localparam [127:0] KEY = 128'h0F0E0D0C_0B0A0908_07060504_03020100;
+	//localparam [127:0] KEY = 128'h2679F5BA_003B0000_523F0056_267ECC39;
+	localparam [127:0] IV  = 128'hEEEEEEEE_FFFFFFFF_AAAAAAAA_CCCCCCCC;
+	//localparam [127:0] IV  = 128'hEDCA20FE_AABB7A98_6ABB7E30_B34A45DB;
+
+	localparam [127:0] BLOCK3 = 128'hEEEEEEEE_FFFFFFFF_11111111_BBBBBBBB;
+
+	// Command Line control
+	`ifdef ECB
+		localparam [2:0] OP_MODE = 0;
+		localparam INVCIPHER = 1'b0;
+		localparam [127:0] BLOCK1 = 128'hFFEEDDCC_BBAA9988_77665544_33221100;
+		localparam [127:0] BLOCK2 = 128'h00112233_44556677_8899AABB_CCDDEEFF;
+	`endif
+
+	`ifdef CBC
+		localparam [2:0] OP_MODE = 1;
+		localparam INVCIPHER = 1'b0;
+		//localparam [127:0] BLOCK1 = 128'h00112233_44556677_8899AABB_CCDDEEFF;
+		localparam [127:0] BLOCK1 = 128'h00000066_00001B00_1D0000F7_000000EB;
+		localparam [127:0] BLOCK2 = 128'hFFEEDDCC_BBAA9988_77665544_33221100;
+	`endif
+
+	`ifdef PCBC
+		localparam [2:0] OP_MODE = 2;
+		localparam INVCIPHER = 1'b0;
+		localparam [127:0] BLOCK1 = 128'h00112233_44556677_8899AABB_CCDDEEFF;
+		localparam [127:0] BLOCK2 = 128'hFFEEDDCC_BBAA9988_77665544_33221100;
+	`endif
+
+	`ifdef CFB
+		localparam [2:0] OP_MODE = 3;
+		localparam INVCIPHER = 1'b0;
+		localparam [127:0] BLOCK1 = 128'h00112233_44556677_8899AABB_CCDDEEFF;
+		localparam [127:0] BLOCK2 = 128'hFFEEDDCC_BBAA9988_77665544_33221100;
+	`endif
+
+	`ifdef OFB
+		localparam [2:0] OP_MODE = 4;
+		localparam INVCIPHER = 1'b0;
+		localparam [127:0] BLOCK1 = 128'h00112233_44556677_8899AABB_CCDDEEFF;
+		localparam [127:0] BLOCK2 = 128'hFFEEDDCC_BBAA9988_77665544_33221100;
+	`endif
+
+	`ifdef CTR
+		localparam [2:0] OP_MODE = 5;
+		localparam INVCIPHER = 1'b0;
+		localparam [127:0] BLOCK1 = 128'h00112233_44556677_8899AABB_CCDDEEFF;
+		localparam [127:0] BLOCK2 = 128'hFFEEDDCC_BBAA9988_77665544_33221100;
+	`endif
+
+	`ifdef IECB
+		localparam [2:0] OP_MODE = 0;
+		localparam INVCIPHER = 1'b1;
+		localparam [127:0] BLOCK1 = 128'h69C4E0D8_6A7B0430_D8CDB780_70B4C55A;
+		localparam [127:0] BLOCK2 = 128'h1B872378_795F4FFD_772855FC_87CA964D;
+	`endif
+
+	`ifdef ICBC
+		localparam [2:0] OP_MODE = 1;
+		localparam INVCIPHER = 1'b1;
+		localparam [127:0] BLOCK1 = 128'hF6217F61_B2D50A6A_E6791F8C_384B1E07;
+		localparam [127:0] BLOCK2 = 128'h00E6F7C3_F089B33A_F8D701BE_B170AF82;
+	`endif
+
+	`ifdef IPCBC
+		localparam [2:0] OP_MODE = 2;
+		localparam INVCIPHER = 1'b1;
+		localparam [127:0] BLOCK1 = 128'hF6217F61_B2D50A6A_E6791F8C_384B1E07;
+		localparam [127:0] BLOCK2 = 128'h1766EA65_883AE0BE_5DE323B1_431CBD54;
+	`endif
+
+	`ifdef ICFB
+		localparam [2:0] OP_MODE = 3;
+		localparam INVCIPHER = 1'b1;
+		localparam [127:0] BLOCK1 = 128'h79C571F9_3E6E9159_05760098_81A3AB8E;
+		localparam [127:0] BLOCK2 = 128'h3F778AF1_BA19E580_C7511371_95BCFF23;
+	`endif
+
+	`ifdef IOFB
+		localparam [2:0] OP_MODE = 4;
+		localparam INVCIPHER = 1'b1;
+		localparam [127:0] BLOCK1 = 128'h79C571F9_3E6E9159_05760098_81A3AB8E;
+		localparam [127:0] BLOCK2 = 128'h03219503_DD597318_7FADC744_74E3F047;
+	`endif
+
+	`ifdef ICTR
+		localparam [2:0] OP_MODE = 5;
+		localparam INVCIPHER = 1'b1;
+		localparam [127:0] BLOCK1 = 128'h79C571F9_3E6E9159_05760098_81A3AB8E;
+		localparam [127:0] BLOCK2 = 128'h833441D2_2AD2BAAE_EFAB5EA5_86AC0DF2;
+	`endif
+	// End of Command Line Control
+
+`endif
