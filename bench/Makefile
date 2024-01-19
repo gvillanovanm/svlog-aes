@@ -1,7 +1,7 @@
 TB=tb_ip_aes.sv
 #TB=tb_amba.sv
 #TB=tb_ip_aes_noamba.sv
-PACKAGES = ../../axi/rtl/axi4_types.sv
+PACKAGES = ./axi4_types.sv
 RTL = ../bench_uvm/aes_config.sv \
       ./axi4_lite_hierarchical.sv \
       ./tb_config.svh \
